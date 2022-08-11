@@ -1,0 +1,87 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="./DDmarket styles.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+        <script>
+            function clickPost(num){
+                let url="https://jsonplaceholder.typicode.com/posts/"+num
+                $.get(url).then(function(data){
+                    $(".modal-title").text(data.title);
+                    $(".modal-body").text(data.body);
+                    $(".modal").modal("show");
+                });
+            }
+            $(document).ready(function(){
+                $(".list-group-item").click( function(){
+                    let id = $(this).attr("id");    
+                    clickPost(id);
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <ul class="list-group list-group-flush ul-div">
+            <li class="list-group-item" id="1">
+                <div class="media">
+                    <img src="./prod1.jpg" class="mr-3 list-image" width="100px" >
+                    <div class="media-body instruct">
+                        <strong class="mt-0">장난감 블록</strong><br>
+                        <small class="location">성수동</small><br>
+                        <span>20,000원</span>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item" id="2">
+                <div class="media">
+                    <img src="./prod2.jpg" class="mr-3 list-image" width="100px" >
+                    <div class="media-body instruct">
+                        <strong class="mt-0">곰인형</strong><br>
+                        <small class="location">성수동</small><br>
+                        <span>50,000원</span>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item" id="3">
+                <div class="media">
+                    <img src="./prod3.jpg" class="mr-3 list-image" width="100px" >
+                    <div class="media-body instruct">
+                        <strong class="mt-0">곰인형2</strong><br>
+                        <small class="location">장안동</small><br>
+                        <span>9,000원</span>
+                    </div>
+                </div>
+            </li>
+            <li class="list-group-item" id="4">
+                <div class="media">
+                    <img src="./prod4.jpg" class="mr-3 list-image" width="100px" >
+                    <div class="media-body instruct">
+                        <strong class="mt-0">곰인형3</strong><br>
+                        <small class="location">고잔동</small><br>
+                        <span>30,000원</span>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="modal" tabindex="-1" id="modal" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modal-title">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                        <div class="modal-body" id="modal-body">
+
+                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

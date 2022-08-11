@@ -1,0 +1,5 @@
+MODAL_CLOSE_SELECTOR = "a[class^=uk-modal-close]"
+MODAL_CLOSE_XPATH = "//*[@id=\"update-profile\"]/div/a"
+MEMBERS_DAYS_XPATH = "/html/body/header/div/div[2]/div/div[1]/ul/li[5]/a"
+PROD_LIST_SELECTOR = "ul#ncss-row item-list-wrap grid-wall-list"
+PROD_ITEM_SELECTOR = "li.search-product"

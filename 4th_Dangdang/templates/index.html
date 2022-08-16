@@ -9,17 +9,17 @@
     <body>
         <div class="product-list">
             <ul class="list-group list-group-flush">
-                {% for gb in guestbooks %}
-                <li class="list-group-item">
+                {% for product in products %}
+                <button class="list-group-item list-group-action" id="{{ product.title }}" data-toggle="modal" data-target="exampleModal">
                     <div class="media">
-                        <img src="./prod4.jpg" class="mr-2 product-image">
+                        <img src="static/prod1.jpg" class="mr-2 product-image">
                         <div class="media-body">
-                            <strong>곰인형3</strong><br>
-                            <small>고잔동</small><br>
-                            <span>30,000원</span>
+                            <strong>{{ product.title }}</strong><br>
+                            <small>{{ product.location }}</small><br>
+                            <span>{{ product.price }}</span>
                         </div>
                     </div>
-                </li>
+                </button>
                 {% endfor %}
             </ul>
         </div>
@@ -27,4 +27,23 @@
             <button type="submit" class="btn btn-primary buttons">판매등록하기</button>
         </form>
     </BODY>
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              ...
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 </html>

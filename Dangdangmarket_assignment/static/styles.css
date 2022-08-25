@@ -1,8 +1,25 @@
+:root{
+    --black: #000000;
+    --blue: #1e90ff;
+    --white: #ffffff;
+}
+
+
 .form-group {
     width: 400px;
 }
 
-.product-list {
+.pagination{
+    margin-top: 20px;
+}
+.pagination a{
+    color: var(--black);
+    padding: 5px;
+    border-radius: 5px;
+    background: var(--white);
+    margin: 5px;
+}
+ .product-list {
     max-width: 400px;
     padding: 20px;
 }

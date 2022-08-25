@@ -13,23 +13,26 @@
         <div class="product-list">
             <div class="">
                 {% for product in products %}
-                <button type="button" class="btn btn-list" data-toggle="modal" data-target="#exampleModal" id="{{ product.title }}">
+                <button type="button" class="btn-list list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModal" id="{{ product.title }}">
                     <!--버튼 모르겠음 -->
-                    <li class="list-group-item">
-                        <div class="media">
-                            <img src="/static/prod1.jpg" class="mr-2 product-image">
-                            <div class="media-body">
-                                <strong>{{ product.title }}</strong><br>
-                                <small>{{ product.location }}</small><br>
-                                <span>{{ product.price }}</span>
-                            </div>
+                    <div class="media my-list">
+                        <img src="/static/prod1.jpg" class="mr-2 product-image">
+                        <div class="media-body">
+                            <strong>{{ product.title }}</strong><br>
+                            <small>{{ product.location }}</small><br>
+                            <span>{{ product.price }}</span>
                         </div>
-                    </li>
+                    </div>
                 </button>
                 {% endfor %}
             </div>
+            <div class="pagination">
+                {% for p in pages %}
+                <a href="/?page={{ p }}">{{ p }}</a>
+                {% endfor %}
+            </div> 
         </div>
-        <div class="">
+        <div class="product-list">
             <a role="button" href="/register" class="btn btn-primary">상품 등록</a> <!-- 버튼 눌렀을때 어디로 이동해라? -->
         <div>
 

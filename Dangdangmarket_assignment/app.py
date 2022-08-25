@@ -1,3 +1,4 @@
+import math
 from flask import Flask, request, redirect, render_template
 from flask_pymongo import PyMongo
 from flask.json import jsonify
@@ -20,17 +21,24 @@ def detail():
 @app.route('/')
 def index():
     products = mongo.db.product
-    byunsoo = products.find()
-    return render_template('index.html', products = byunsoo)
+    page = int(request.args.get('page',1))
+    limit = 3
+    skip = limit * (page - 1)
+    count = mongo.db['product'].count_documents({})
+    max_page = math.ceil(count / limit)
+
+    pages = range(1, max_page +1)
+    merchandise = mongo.db['product'].find().limit(limit).skip(skip)
+    
+    byunsoo = products.find().limit(limit).skip(skip)
+    return render_template('index.html', products = byunsoo, pages=pages)
 
 
 @app.route('/register')
 def register():
     return render_template('register.html')
 
-
-
-@app.route('/write', methods=["POST"])
+@app.route('/write', methods=["POST"]) 
 def write():
     products = mongo.db.product
     products.insert_one({

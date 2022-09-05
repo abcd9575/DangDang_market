@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -14,11 +17,21 @@
         integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/static/styles.css">
+    <script>
+        $(document).ready(function() {
+            $("#write-form").on('submit',function () {
+                let content = $(".ql-editor").html();
+                $("#content").html(content);
+                return true;
+            });
+        });
+    </script>
+
     <title>DANGDANG</title>
 </head>
 
 <body>
-    <form method="post" action="/write">
+    <form enctype="multipart/form-data" method="post" action="/write" id="write-form">
         <div class="round">
             <div class="form-group">
                 <label for="exampleInputEmail1">제목</label>
@@ -37,12 +50,29 @@
 
             <div class="form-group">
                 <label for="exampleInputEmail1">내용</label><br>
-                <textarea class="form-control" name="content" rows="3" placeholder="내용을 입력하세요" cols="51" name="content"></textarea>
+                <textarea rows="3" id="content" placeholder="내용을 입력하세요" cols="51" name="content" style="display: none;"></textarea>
+                <div id="editor"></div>
             </div>
+
+            <div class="form-group">
+                <label for="image">이미지</label>
+                <input type="file" class="form-control" id="image" placeholder="가격을 입력하세요" name="image">
+            </div>
+
         </div>
         <button type="submit" action="/write" class="btn btn-primary buttons">등록</button><br>
         <a role="button" href="/" class="btn btn-secondary buttons">취소</a>
     </form>
+
+    <!-- Include the Quill library -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+
+    <!-- Initialize Quill editor -->
+    <script>
+        var quill = new Quill('#editor', {
+            theme: 'snow'
+        });
+    </script>
 </body>
 
 </html>

@@ -16,7 +16,11 @@
                 <button type="button" class="btn-list list-group-item list-group-item-action" data-toggle="modal" data-target="#exampleModal" id="{{ product.title }}">
                     <!--버튼 모르겠음 -->
                     <div class="media my-list">
+                        {% if product.image %}
+                        <img src="/static/{{ product.image }}" class="mr-2 product-image">
+                        {% else %}
                         <img src="/static/prod1.jpg" class="mr-2 product-image">
+                        {% endif %}
                         <div class="media-body">
                             <strong>{{ product.title }}</strong><br>
                             <small>{{ product.location }}</small><br>

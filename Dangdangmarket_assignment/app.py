@@ -1,3 +1,4 @@
+import os
 import math
 from flask import Flask, request, redirect, render_template
 from flask_pymongo import PyMongo
@@ -40,12 +41,20 @@ def register():
 
 @app.route('/write', methods=["POST"]) 
 def write():
+
+    fileinfo = request.files['image']
+    filepath = os.path.dirname(os.path.abspath(__file__))
+    filepath = os.path.join(filepath, 'static')
+    
+    fileinfo.save(os.path.join(filepath, fileinfo.filename))
+
     products = mongo.db.product
     products.insert_one({
         "title": request.form.get('title'),
         "price": request.form.get('price'),
         "location": request.form.get('loc'),
-        "content": request.form.get('content')
+        "content": request.form.get('content'),
+        "image": fileinfo.filename
     })
     return redirect('/')
 
